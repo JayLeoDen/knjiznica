@@ -37,7 +37,6 @@ const linksList = [
     link: 'http://localhost:9000/#/',
   }, 
 
-
   {
   title: 'Knjižnica - nove knjige',
     caption: 'Nove knjige u Knjižnici',
@@ -53,60 +52,38 @@ const linksList = [
   },
 
   {
+  title: 'Knjižnica - pretraživanje knjiga',
+    caption: 'Pretraživanje knjiga u knjižnici',
+    icon: 'search',
+    link: 'http://localhost:9000/#/pretrazivanje',
+  }, 
+
+  {
+  title: 'Knjižnica - Lokacija',
+    caption: 'Lokacija knjiga',
+    icon: 'location_on',
+    link: 'http://localhost:9000/#/lokacija',
+  }, 
+
+  {
+  title: 'Knjižnica - Login',
+    caption: 'Login na stranicu',
+    icon: 'login',
+    link: 'http://localhost:9000/#/login',
+  }, 
+
+  {
+  title: 'Knjižnica - Registracija',
+    caption: 'Registracija na stranicu',
+    icon: 'add',
+    link: 'http://localhost:9000/#/registracija',
+  }, 
+
+  {
   title: 'GitHub Repozitorij',
     caption: 'GitHub - Knjiznica',
     icon: 'functions',
     link: 'https://github.com/JayLeoDen/knjiznica.git',
-  },
-
-  {
-    title: 'Docs',
-    caption: 'quasar.dev',
-    icon: 'school',
-    link: 'https://quasar.dev',
-  },
-  {
-    title: 'Github',
-    caption: 'github.com/quasarframework',
-    icon: 'code',
-    link: 'https://github.com/quasarframework',
-  },
-  {
-    title: 'Discord Chat Channel',
-    caption: 'chat.quasar.dev',
-    icon: 'chat',
-    link: 'https://chat.quasar.dev',
-  },
-  {
-    title: 'Forum',
-    caption: 'forum.quasar.dev',
-    icon: 'record_voice_over',
-    link: 'https://forum.quasar.dev',
-  },
-  {
-    title: 'Twitter',
-    caption: '@quasarframework',
-    icon: 'rss_feed',
-    link: 'https://twitter.quasar.dev',
-  },
-  {
-    title: 'Facebook',
-    caption: '@QuasarFramework',
-    icon: 'public',
-    link: 'https://facebook.quasar.dev',
-  },
-  {
-    title: 'Quasar Awesome',
-    caption: 'Community Quasar projects',
-    icon: 'favorite',
-    link: 'https://awesome.quasar.dev',
-  },
-  
-  {
-  title: 'Veleučilište u Rijeci',
-    caption: 'Veleri',
-    icon: 'school',
-    link: 'https://www.veleri.hr/hr',
   },
 
   
