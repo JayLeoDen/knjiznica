@@ -26,7 +26,7 @@ onMounted(() => {
 
   L.marker([45.3312, 14.4322])
     .addTo(initialMap.value)
-    .bindPopup('Lokacija knjižnice')
+    .bindPopup('Knjižnica')
     .openPopup()
 })
 </script>

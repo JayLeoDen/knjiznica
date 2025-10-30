@@ -3,34 +3,34 @@
     <h2>Pretrazivanje knjiga</h2>
 
     <q-card class="q-pa-md q-mb-md" flat bordered>
-      <div class="row q-gutter-md">
-        <q-input
-          filled
-          v-model="pojam"
-          label="Unesite pojam"
-          class="col-12 col-md-4"
-          label-class="text-weight-normal"
-        />
+  <div class="row items-center q-gutter-md">
+    <q-input
+      filled
+      v-model="pojam"
+      label="Unesite pojam"
+      class="col-12 col-md-4"
+      label-class="text-weight-normal"
+    />
 
-        <q-checkbox
-          v-model="poAutor"
-          label="Pretraži po autoru"
-          class="col-12 col-md-2"
-          label-class="text-weight-normal"
-        />
+    <q-checkbox
+      v-model="poAutor"
+      label="Pretraži po autoru"
+      class="col-12 col-md-2"
+      label-class="text-weight-normal"
+    />
 
-        <q-checkbox
-          v-model="poNaslov"
-          label="Pretraži po naslovu"
-          class="col-12 col-md-2"
-          label-class="text-weight-normal"
-        />
-      </div>
+    <q-checkbox
+      v-model="poNaslov"
+      label="Pretraži po naslovu"
+      class="col-12 col-md-2"
+      label-class="text-weight-normal"
+    />
 
-      <q-card-actions align="right">
-        <q-btn label="Traži" color="primary" @click="trazi" />
-      </q-card-actions>
-    </q-card>
+    <q-space />
+
+    <q-btn label="Traži" color="primary" @click="trazi" />
+  </div>
+</q-card>
 
     <q-table
       title="Rezultati pretraživanja"
