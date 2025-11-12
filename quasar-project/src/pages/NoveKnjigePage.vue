@@ -1,71 +1,115 @@
 <template>
   <q-page padding>
-    <!-- content -->
-     <h2>Nove knjige</h2>
+    <h2>Unos novih knjiga</h2>
 
-     <q-toolbar class="bg-grey-9 text-white">
-      <q-toolbar-title>
-        Popis knjiga
-      </q-toolbar-title>
-       </q-toolbar>
+    <q-card class="q-pa-md q-mb-md" flat bordered>
+      <div class="row q-col-gutter-md">
+        <q-input filled v-model="novaKnjiga.naslov" label="Naslov knjige" class="col-12 col-md-6" />
+        <q-input filled v-model="novaKnjiga.autor" label="Autor" class="col-12 col-md-6" />
+        <q-input filled v-model="novaKnjiga.opis" label="Opis" type="textarea" class="col-12" />
 
-     <div class="q-pa-md row items-start q-gutter-md">
-    <q-card class="my-card">
-      <img src="~assets/knjige.jpg">
+        <q-file
+          filled
+          v-model="novaKnjiga.slika"
+          label="Odaberi sliku"
+          accept="image/*"
+          class="col-12 col-md-6"
+        />
 
-      <q-card-section>
-        <div class="text-h6">Gospodar Prstenova</div>
-        <div class="text-subtitle2">by J.R.R.Tolkien</div>
-      </q-card-section>
+        <q-select
+          filled
+          v-model="novaKnjiga.status"
+          :options="statusOpcije"
+          label="Status"
+          class="col-12 col-md-6"
+        />
+      </div>
 
-      <q-card-section class="q-pt-none">
-        {{ lorem }}
-      </q-card-section>
+      <q-card-actions align="right">
+        <q-btn label="Spremi" color="primary" @click="spremiKnjigu" />
+        <q-btn label="Odustani" color="negative" flat @click="odustani" />
+      </q-card-actions>
     </q-card>
 
-        <q-card class="my-card">
-      <img src="~assets/knjige2.jpg">
-
-      <q-card-section>
-        <div class="text-h6">Harry Potter i ukleto dijete</div>
-        <div class="text-subtitle2">by J.K.Rowling</div>
-      </q-card-section>
-
-      <q-card-section class="q-pt-none">
-        {{ lorem1 }}
-      </q-card-section>
-    </q-card>
-
-        <q-card class="my-card">
-      <img src="~assets/knjige3.jpg">
-
-      <q-card-section>
-        <div class="text-h6">Družba Pere Kvržice</div>
-        <div class="text-subtitle2">by Mato Lovrak</div>
-      </q-card-section>
-
-      <q-card-section class="q-pt-none">
-        {{ lorem2 }}
-      </q-card-section>
-    </q-card>
-  </div>
+    <div class="row q-col-gutter-md">
+      <q-card
+        v-for="knjiga in knjige"
+        :key="knjiga.id"
+        bordered
+        class="col-12 col-md-4 q-pa-sm"
+      >
+        <q-img
+          v-if="knjiga.slikaUrl"
+          :src="knjiga.slikaUrl"
+          :alt="knjiga.naslov"
+          style="height:200px; object-fit:cover;"
+        />
+        <q-card-section>
+          <div class="text-h6">{{ knjiga.naslov }}</div>
+          <div class="text-subtitle2">Autor: {{ knjiga.autor }}</div>
+          <div class="text-caption q-mt-sm">{{ knjiga.opis }}</div>
+          <q-badge
+          :color="knjiga.status === 'Slobodna' ? 'positive' : 'negative'"
+          class="q-mt-sm"
+          align="top"
+          >
+          {{ knjiga.status }}
+        </q-badge>
+        </q-card-section>
+      </q-card>
+    </div>
   </q-page>
 </template>
 
-<script>
-export default {
-  setup () {
-    return {
-      lorem: 'Fantazijski roman o ratu prstena' ,
-      lorem1: 'Avantura u Hogwartsu',
-      lorem2: 'Priča o dječjoj družini'
-    }
+<script setup>
+import { ref } from 'vue'
+
+const statusOpcije = ['Slobodna', 'Zauzeta']
+
+const novaKnjiga = ref({
+  id: 0,
+  naslov: '',
+  autor: '',
+  opis: '',
+  slika: null,
+  status: ''
+})
+
+const knjige = ref([])
+
+function spremiKnjigu() {
+  if (!novaKnjiga.value.naslov || !novaKnjiga.value.autor) {
+    alert('Molimo unesite naslov i autora.')
+    return
+  }
+
+  const noviId = knjige.value.length + 1
+
+  let slikaUrl = ''
+  if (novaKnjiga.value.slika) {
+    slikaUrl = URL.createObjectURL(novaKnjiga.value.slika)
+  }
+
+  knjige.value.push({
+    id: noviId,
+    naslov: novaKnjiga.value.naslov,
+    autor: novaKnjiga.value.autor,
+    opis: novaKnjiga.value.opis,
+    slikaUrl,
+    status: novaKnjiga.value.status || 'slobodna'
+  })
+
+  odustani()
+}
+
+function odustani() {
+  novaKnjiga.value = {
+    id: 0,
+    naslov: '',
+    autor: '',
+    opis: '',
+    slika: null,
+    status: ''
   }
 }
 </script>
-
-<style lang="sass" scoped>
-.my-card
-  width: 100%
-  max-width: 275px
-</style>
